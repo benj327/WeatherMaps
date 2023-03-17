@@ -15,7 +15,6 @@ import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 import GoogleAutoCompleteInput from './GoogleAutoCompleteInput';
 
 
-// Import the components you'll use to display the weather information
 import WeatherInfo from './components/WeatherInfo';
 
 const Stack = createStackNavigator();
@@ -164,7 +163,7 @@ const HomeScreen = () => {
       : `${origin.latitude},${origin.longitude}`;
     const directionsUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${originString}&destination=${encodeURIComponent(
       dest,
-    )}&key=AIzaSyA2i3DaCSWXFSxVuKCx07CMq-vxTeGkUBs`;
+    )}&key=GOOGLEMAPSAPIKEY;
     try {
       const directionsResponse = await fetch(directionsUrl);
       const directionsData = await directionsResponse.json();
@@ -180,10 +179,9 @@ const HomeScreen = () => {
       );
 
       // Fetch weather data for each waypoint
-      // Replace YOUR_OPENWEATHERMAP_API_KEY with your actual API key
       const weatherPromises = waypoints.map((waypoint: any) =>
         fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${waypoint.latitude}&lon=${waypoint.longitude}&units=imperial&appid=f10ee5447c553204ce64ffb2701caf9e`,
+          `https://api.openweathermap.org/data/2.5/weather?lat=${waypoint.latitude}&lon=${waypoint.longitude}&units=imperial&appid=WEATHERAPIKEY`,
         ),
       );
 
@@ -217,7 +215,7 @@ const HomeScreen = () => {
             }
           }}
           query={{
-            key: 'AIzaSyA2i3DaCSWXFSxVuKCx07CMq-vxTeGkUBs',
+            key: 'Google places API key',
             language: 'en',
           }}
           styles={{
@@ -242,7 +240,7 @@ const HomeScreen = () => {
             }
           }}
           query={{
-            key: 'AIzaSyA2i3DaCSWXFSxVuKCx07CMq-vxTeGkUBs',
+            key: 'Google Places API Key',
             language: 'en',
           }}
           styles={{
